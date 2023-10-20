@@ -25,7 +25,7 @@ services:
     container_name: db_kanban
     restart: unless-stopped
     ports:
-      - "4306:3306"
+      - "3306:3306"
     environment:
       MYSQL_DATABASE: clicknext-kanban
       MYSQL_USER: clicknext-kanban

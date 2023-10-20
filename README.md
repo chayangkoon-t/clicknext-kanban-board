@@ -39,3 +39,8 @@ cp .env.example .env
 php artisan key:generate
 php artisan migrate
 ```
+### 4. Access Laravel Project
+Go to
+```bash
+localhost:4040
+```
