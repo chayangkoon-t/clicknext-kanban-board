@@ -5381,9 +5381,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.boards = this.initialData;
-    // this.boards = JSON.parse(JSON.stringify(this.initialData));
   },
-
   methods: {
     closeAddBoardForm: function closeAddBoardForm() {
       this.showBoardCreate = false;
@@ -5494,7 +5492,6 @@ __webpack_require__.r(__webpack_exports__);
           _this5.$refs["board_user_" + id][0].focus();
         }
         console.log(_this5.$refs["board_user_" + id]);
-        // this.$refs.newUserInput.focus();
       });
     },
     saveUser: function saveUser() {
