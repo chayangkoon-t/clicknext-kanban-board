@@ -1,0 +1,62 @@
+version: "1"
+
+services:
+  # PHP + Apache Service
+  clicknext-kanban:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: clicknext-kanban-nonprod
+    restart: unless-stopped
+    ports:
+      - "4040:80"
+    volumes:
+      - /var/www/vendor/
+      - .:/var/www
+    depends_on:
+      - db
+    networks:
+      - clicknext-kanban-network
+
+  # MySQL Service
+  db:
+    platform: linux/x86_64
+    image: mysql:5.7
+    container_name: db_kanban
+    restart: unless-stopped
+    ports:
+      - "4306:3306"
+    environment:
+      MYSQL_DATABASE: clicknext-kanban
+      MYSQL_USER: clicknext-kanban
+      MYSQL_PASSWORD: roottoor
+      MYSQL_RANDOM_ROOT_PASSWORD: 1
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - clicknext-kanban-network
+
+  # phpMyAdmin Service
+  phpmyadmin:
+    platform: linux/x86_64
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_kanban
+    restart: unless-stopped
+    ports:
+      - "4041:80"
+    environment:
+      PMA_HOST: db_kanban
+      PMA_PORT: 3306
+    depends_on:
+      - db
+    networks:
+      - clicknext-kanban-network
+
+# Networks
+networks:
+  clicknext-kanban-network:
+    driver: bridge
+
+# Volumes
+volumes:
+  db_data:
