@@ -68,7 +68,6 @@
                         <div class="p-2">
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex justify-content-start">
-                                    <!-- <span v-if="board.board_users.length"></span> -->
                                     <i v-if="board.board_users?.length" class="fa fa-users px-1"></i>
                                     <div class="d-flex justify-content-start">
                                         <div v-for="board_user in board.board_users" :key="board_user.id">
@@ -80,17 +79,6 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <!-- <i v-if="!addingUser" class="fa fa-user-plus px-1" @click="startAddingUser(board.id)"></i>
-                                    <div v-if="addingUser">
-                                        <select  v-model="selected" id="userList" :ref="`board_user_${board.id}`">
-                                            <option v-for="user in userList" v-bind:value="user.id" :key="user.id">
-                                                {{user.name}}
-                                            </option>
-                                        </select>
-                                        <input type="text" v-model="newUserName" :ref="`board_user_${board.id}`"
-                                            @keydown.enter="saveUser" placeholder="Enter username"  />
-                                        <button @click="saveUser" class="btn btn-primary">Save</button>
-                                    </div> -->
                                 </div>
                                 <div class="d-flex justify-content-end">
                                     <i class="fa fa-user px-1"></i>
@@ -136,7 +124,6 @@ export default {
     },
     mounted() {
         this.boards = this.initialData;
-        // this.boards = JSON.parse(JSON.stringify(this.initialData));
     },
     methods: {
         closeAddBoardForm() {
@@ -248,7 +235,6 @@ export default {
                         this.$refs["board_user_" + id][0].focus();
                     }
                 console.log(this.$refs["board_user_" + id]);
-                // this.$refs.newUserInput.focus();
             });
         },
         saveUser() {
